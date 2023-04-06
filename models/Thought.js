@@ -5,11 +5,12 @@ const thoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true, 
-      //  Must be between 1 and 280 characters
+      minlength: 1,
+      maxlength: 280,
     },
     createdAt: {
-      type: Date, //double check
-      // Set default value to the current timestamp
+      type: Date,
+      default: Date.now,
       // Use a getter method to format the timestamp on query
     },
     username: { // The user that created this thought
@@ -19,10 +20,20 @@ const thoughtSchema = new Schema(
     reactions: { // These are like replies
       // Array of nested documents created with the reactionSchema
     }
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
   }
 )
 
 // TODO Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
+
+userSchema.virtual('reactionCount')
+.get(function() {
+  // code
+})
 
 
 const Thought = model('thought', thoughtSchema)
