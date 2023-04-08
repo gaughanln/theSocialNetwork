@@ -1,4 +1,4 @@
-const {  } = require('mongoose'); //update
+const { Schema, model } = require('mongoose'); 
 
 const userSchema = new Schema(
   {
@@ -12,23 +12,26 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-       // Must match a valid email address (look into Mongoose's matching validation)
-      //  can i use this? https://github.com/validatorjs/validator.js
-    },
-    thoughts: {
-      //  Array of _id values referencing the Thought model
-    },
-    friends: {
-      // Array of _id values referencing the User model (self-reference)
-    }
+      match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'This must be a valid email address']
+      },
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'thought',
+      }
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+      }
+    ]
   }
 )
 
-// TODO Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
-
 userSchema.virtual('friendCount')
 .get(function() {
-  // code
+return this.friends.length
 })
 
 const User = model('user', userSchema)
