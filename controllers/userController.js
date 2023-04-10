@@ -18,6 +18,7 @@ module.exports = {
   },
 
   // Get a single user by its _id and populated thought and friend data
+  // Get a single User
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .populate("friends")
