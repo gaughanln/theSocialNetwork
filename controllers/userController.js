@@ -1,8 +1,7 @@
 const User = require("../models/User");
-const router = require("express").Router();
 const Thought = require("../models/Thought");
 
-module.exports = {
+const userController = {
   // Get all users
   getUsers(req, res) {
     User.find()
@@ -102,3 +101,5 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 };
+
+module.exports = userController;
