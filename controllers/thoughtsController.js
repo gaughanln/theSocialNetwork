@@ -6,6 +6,7 @@ module.exports = {
   // Get all thoughts
   getThoughts(req, res) {
     Thought.find()
+    .populate('reactions')
          .then((thoughtData) => {
         return res.json(thoughtData);
       })
@@ -30,12 +31,22 @@ module.exports = {
    // Create a new thought
    createNewThought(req, res) {
     Thought.create(req.body)
-      .then((thoughtData) => res.json(thoughtData))
+      .then((thoughtData) => {
+        // add the new thought's id to its associated user's thoughts array
+        return User.findOneAndUpdate(
+          { username: req.body.username },
+          { $push: { thoughts: thoughtData._id } },
+          { new: true }
+        );
+      })
+      .then((userData) => {
+        // return the updated user document with the new thought
+        return res.json(userData);
+      })
       .catch((err) => {
         console.log(err);
         return res.status(500).json(err);
       });
-      // don't forget to push the created thought's _id to the associated user's thoughts array field
   },
 
 // Delete a thought
@@ -72,8 +83,8 @@ deleteThought(req, res) {
   createReaction(req, res) {
     console.log("I've got an opinion on this!");
     Thought.findOneAndUpdate(
-      { _id: req.params.reactions },
-      { $addToSet: { reaction: {reactionId: req.params.thoughtId} } },
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: {reactionId: req.params.userId} } },
       { runValidators: true, new: true }
     )
       .then((reaction) =>
