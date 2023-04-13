@@ -19,25 +19,20 @@ Must use the following:
   * Mongoose
   * Insomnia
 
-<!-- update links -->
 ## End Product 
+<!-- Vides of application in progress -->
+The following shows the server starting in the terminal
+https://user-images.githubusercontent.com/111533986/231854297-b861a735-b504-43e1-8f73-b4a41781a4b8.mov
 
-<!-- Video of application in progress -->
-The following video shows an example of the application being used from Insomnia:
+The following video shows an example of the user routes in the application being used from Insomnia:
+https://user-images.githubusercontent.com/111533986/231855376-5fed1c7e-2e41-471f-864a-63697d01b0d2.mp4
 
-https://user-images.githubusercontent.com/111533986/223275391-b58313c7-f0f5-4517-864d-1627bc2906f2.mov
-
-The following video shows how to create the schema from the Mysql shell, seed the database from the command line, and start the application's server.
-
-https://user-images.githubusercontent.com/111533986/223287162-66b4ece9-2e71-4b55-b4a7-9368dca66e7f.mov
-
-<!-- screenshots -->
-Below is a screenshot of the application in use
-![screenshot](./assets/backendScreenshot.png)
+The following video shows an example of the thought routes in the application being used from Insomnia:
+https://user-images.githubusercontent.com/111533986/231856621-05e347d7-8c15-4520-8517-d6ab175c8cf8.mp4
 
 
 ## Deployment
-Here is the [link](https://github.com/gaughanln/BackEnd_E-Commerce) to the Github repository
+Here is the [link](https://github.com/gaughanln/theSocialNetwork) to the Github repository
 
 ## Contributing
 Lindsey Gaughan (Me!) 
