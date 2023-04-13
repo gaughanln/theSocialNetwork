@@ -87,8 +87,8 @@ deleteThought(req, res) {
   // Delete a reaction
   deleteReaction(req, res) {
     Thought.findOneAndUpdate(
-      { _id: req.params.reactions },
-      { $addToSet: { reaction: {reactionId: req.params.thoughtId} } },
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: {_id: req.params.reactionId} } },
       { runValidators: true, new: true }
     )
       .then((reaction) =>

@@ -12,8 +12,5 @@ module.exports = router
 
 
 
-// router.use((req, res) => {
-//   return res.send('Wrong route!')},
-//   );
 
 
